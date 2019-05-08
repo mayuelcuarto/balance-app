@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   constructor() { }
+  appName: string = 'Balance App!';
 
   ngOnInit() {
   }
