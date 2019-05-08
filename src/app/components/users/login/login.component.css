@@ -3,10 +3,14 @@
 }
 
 .div-login{
-	display: flex;
-	flex-direction: column;
+	display: inline-block;
+	width: 100%;
 }
 
-.div-login > * {
-  width: 100%;
+.table-login{
+	width: 100%;
+}
+
+.form-control-login{
+	text-align: center;
 }

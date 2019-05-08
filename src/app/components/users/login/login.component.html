@@ -1,9 +1,9 @@
 <h1 class="header-app">Login</h1>
 <div class="div-login">
-	<!--<form #formLogin="ngForm" >-->
-		<table>
+	<form #formLogin="ngForm">
+		<table class="table-login">
 			<tr>
-				<td>
+				<td class="form-control-login">
 					<mat-form-field>
 						<input matInput placeholder="Ingresa tu Email" [formControl]="email">
 						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -11,7 +11,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="form-control-login">
 					<mat-form-field>
 						<input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
 						<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -19,12 +19,12 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="form-control-login">
 					<button mat-raised-button color="primary" class="btn-send">
 						LOGIN
 					</button>
 				</td>
 			</tr>
 		</table>
-	<!--</form>-->
+	</form>
 </div>
