@@ -1,0 +1,12 @@
+.header-app {
+	text-align: center;
+}
+
+.div-login{
+	display: flex;
+	flex-direction: column;
+}
+
+.div-login > * {
+  width: 100%;
+}
