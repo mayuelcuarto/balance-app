@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/home/register/register.component
 import { ProfileComponent } from './components/home/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 
+import { MaterialModule } from './material.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
