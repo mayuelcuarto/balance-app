@@ -10,6 +10,7 @@ import { ProfileComponent } from './components/home/profile/profile.component';
 import { HomeComponent } from './components/home/home.component';
 
 import { MaterialModule } from './material.module';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MaterialModule } from './material.module';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    HomeComponent
+    HomeComponent,
+    MainMenuComponent
   ],
   imports: [
     BrowserModule,
