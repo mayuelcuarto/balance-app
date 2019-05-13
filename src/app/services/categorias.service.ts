@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { CategoriaInterface } from '../models/categoria';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CategoriasService {
+
+  constructor(private readonly afs: AngularFirestore) {}
+  private categoriasCollection: AngularFirestoreCollection<CategoriaInterface>;
+  private categorias: Observable<CategoriaInterface[]>;
+  private categoriaDoc: AngularFirestoreDocument<CategoriaInterface>;
+  private categoria: Observable<CategoriaInterface>;
+  public selectedCategoria: CategoriaInterface = {
+    id: null
+  };
+
+  getCategorias(){
+    this.categoriasCollection = this.afs.collection<CategoriaInterface>('categorias');
+    return this.categorias = this.categoriasCollection.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as CategoriaInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+    }));
+  }
+
+  getCategoriasByTipo(tipo: string) {
+    this.categoriasCollection = this.afs.collection('categorias', ref => ref.where('type', '==', tipo));
+    return this.categorias = this.categoriasCollection.snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as CategoriaInterface;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+      }));
+  }
+
+  updateCategoria(categoria: CategoriaInterface){
+  	return this.categoriasCollection.doc(categoria.id).update(categoria);
+  }
+
+  deleteCategoria(id: string){
+  	return this.categoriasCollection.doc(id).delete();
+  }
+
+  createCategoria(categoria: CategoriaInterface){
+  	return this.categoriasCollection.add(categoria);
+  }
+}
