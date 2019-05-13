@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ !this.data.selectedCategoria.id ? 'Nueva Categoría' : 'Actualizar Categoría' }}</h1>
+<form #formCategoria="ngForm" (ngSubmit)="onSaveCategoria(formCategoria)">
+<div mat-dialog-content>
+  <p>Asigna los datos para la categoría</p>
+  <input type="hidden" name="id" [(ngModel)]="this.data.selectedCategoria.id">
+  <mat-form-field>
+    <mat-label>Tipo de Concepto</mat-label>
+    <mat-select [ngModel]="this.data.selectedCategoria.type" name="type" [value]="selectedTipo">
+      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+        {{tipo.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="this.data.selectedCategoria.name" name="name" placeholder="Nombre">
+  </mat-form-field>
+</div>
+</form>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" >Close</button>
+  <button mat-button cdkFocusInitial (click)="this.formCategoria.onSubmit()">Save</button>
+</div>
+
