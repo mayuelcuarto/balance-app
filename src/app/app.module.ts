@@ -16,6 +16,17 @@ import { ProfileComponent } from './components/users/profile/profile.component';
 import { MaterialModule } from './material.module';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 
+import { environment } from '../environments/environment';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ConceptoModalComponent } from './modals/concepto-modal/concepto-modal.component';
+import { CategoriasComponent } from './components/categorias/categorias.component';
+import { CategoriaModalComponent } from './modals/categoria-modal/categoria-modal.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +35,10 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     MainMenuComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ConceptoModalComponent,
+    CategoriasComponent,
+    CategoriaModalComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -32,9 +46,19 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  entryComponents: [
+  ConceptoModalComponent,
+  CategoriaModalComponent
+  ],
+  providers: [
+    AngularFireAuth,
+    AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
