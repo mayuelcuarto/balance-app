@@ -1,11 +1,11 @@
 <h1 class="header-app">Login</h1>
 <div class="div-login">
-	<form #formLogin="ngForm">
+	<form [formGroup]="formLogin" (ngSubmit)="onLogin()">
 		<table class="table-login">
 			<tr>
 				<td class="form-control-login">
 					<mat-form-field>
-						<input matInput placeholder="Ingresa tu Email" [formControl]="email">
+						<input #email maxlength="50" matInput placeholder="Ingresa tu Email"  formControlName = "email">
 						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
 					</mat-form-field>
 				</td>
@@ -13,14 +13,14 @@
 			<tr>
 				<td class="form-control-login">
 					<mat-form-field>
-						<input matInput placeholder="Password" [type]="hide ? 'password' : 'text'">
+						<input #password matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName = "password">
 						<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 					</mat-form-field>
 				</td>
 			</tr>
 			<tr>
 				<td class="form-control-login">
-					<button mat-raised-button color="primary" class="btn-send">
+					<button mat-raised-button color="primary" class="btn-send" (click)="onLogin()">
 						LOGIN
 					</button>
 				</td>
