@@ -1,0 +1,40 @@
+<h1 mat-dialog-title>{{ !this.data.selectedConcepto.id ? 'Nuevo Concepto' : 'Actualizar Concepto' }}</h1>
+<form #formConcepto="ngForm" (ngSubmit)="onSaveConcepto(formConcepto)">
+<div mat-dialog-content>
+  <p>Asigna los datos para el concepto</p>
+  <input type="hidden" name="id" [(ngModel)]="this.data.selectedConcepto.id">
+  <mat-form-field>
+    <mat-label>Tipo de Concepto</mat-label>
+    <mat-select [ngModel]="this.data.selectedConcepto.type" name="type" [value]="selectedTipo" (ngModelChange)="getCategoriasByTipo($event)">
+      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+        {{tipo.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoría</mat-label>
+    <mat-select [ngModel]="this.data.selectedConcepto.category" name="category" [value]="selectedCategoria" >
+      <mat-option *ngFor="let categoria of categorias" [value]="categoria.name">
+        {{categoria.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="this.data.selectedConcepto.description" name="description" placeholder="Descripción">
+  </mat-form-field>
+  <mat-form-field>
+  	<input matInput [(ngModel)]="this.data.selectedConcepto.mount" name="mount" placeholder="Monto" type="number">
+  </mat-form-field>
+  <mat-form-field>
+  <input matInput [matDatepicker]="pick"  placeholder="Fecha" [formControl]="fecha">
+  <mat-datepicker-toggle matSuffix [for]="pick"></mat-datepicker-toggle>
+  <mat-datepicker #pick></mat-datepicker>
+</mat-form-field>
+</div>
+</form>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" >Close</button>
+  <button mat-button cdkFocusInitial (click)="(this.formConcepto.onSubmit())">Save</button>
+</div>
+
+
