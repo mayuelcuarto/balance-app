@@ -5,7 +5,7 @@
   <input type="hidden" name="id" [(ngModel)]="this.data.selectedConcepto.id">
   <mat-form-field>
     <mat-label>Tipo de Concepto</mat-label>
-    <mat-select [ngModel]="this.data.selectedConcepto.type" name="type" [value]="selectedTipo" (ngModelChange)="getCategoriasByTipo($event)">
+    <mat-select [ngModel]="this.data.selectedConcepto.type" name="type" (ngModelChange)="getCategoriasByTipo($event)">
       <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
         {{tipo.name}}
       </mat-option>
@@ -13,7 +13,7 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Categoría</mat-label>
-    <mat-select [ngModel]="this.data.selectedConcepto.category" name="category" [value]="selectedCategoria" >
+    <mat-select [ngModel]="this.data.selectedConcepto.category" name="category">
       <mat-option *ngFor="let categoria of categorias" [value]="categoria.name">
         {{categoria.name}}
       </mat-option>
@@ -33,7 +33,7 @@
 </div>
 </form>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()" >Close</button>
+  <button mat-button (click)="onNoClick(formConcepto)" >Close</button>
   <button mat-button cdkFocusInitial (click)="(this.formConcepto.onSubmit())">Save</button>
 </div>
 

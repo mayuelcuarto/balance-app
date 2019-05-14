@@ -29,17 +29,23 @@ export class ConceptoModalComponent implements OnInit {
   ];
 
   public categorias: CategoriaInterface[] = [];
-
-  selectedTipo = 'Ingreso';
   fecha = null;
 
-  onNoClick(): void {
+  onNoClick(conceptoForm: NgForm): void {
+    conceptoForm.resetForm();
     this.dialogRef.close();
   }
 
   ngOnInit() {
-    this.getCategoriasByTipo('ingreso');
-    this.fecha = new FormControl(this.data.selectedConcepto.date.toDate());
+    if(this.data.selectedConcepto.id != null){
+      this.fecha = new FormControl(this.data.selectedConcepto.date.toDate());
+      this.getCategoriasByTipo(this.data.selectedConcepto.type);
+    }else{
+      this.fecha = new FormControl(new Date());
+      this.data.selectedConcepto.type = "ingreso";
+      this.data.selectedConcepto.category = null;
+      this.getCategoriasByTipo("ingreso");
+    }
   }
 
   onSaveConcepto(conceptoForm: NgForm): void{
@@ -62,7 +68,6 @@ export class ConceptoModalComponent implements OnInit {
         this.conceptoService.updateConcepto(conceptoForm.value);
       }
     }
-    //console.log('Else', conceptoForm.value);
     conceptoForm.resetForm();
     this.dialogRef.close();
   }

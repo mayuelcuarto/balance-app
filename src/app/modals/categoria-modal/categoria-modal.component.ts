@@ -24,13 +24,17 @@ export class CategoriaModalComponent implements OnInit {
     {id: 'egreso', name: 'Egresos'}
   ];
 
-  selectedTipo = 'Ingreso';
-
-  onNoClick(): void {
+  onNoClick(categoriaForm: NgForm): void {
+    categoriaForm.resetForm();
     this.dialogRef.close();
   }
 
   ngOnInit() {
+    if(this.data.selectedCategoria.id != null){
+      
+    }else{
+      this.data.selectedCategoria.type = "ingreso";
+    }
   }
 
   onSaveCategoria(categoriaForm: NgForm): void{
