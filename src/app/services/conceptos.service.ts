@@ -30,14 +30,19 @@ export class ConceptosService {
     }));
   }
 
-  updateConcepto(concepto: ConceptoInterface){
-    /*console.log(concepto.date.getFullYear(), concepto.date.getMonth() + 1, concepto.date.getDate()); 
-    let day = concepto.date.getDate();
-    let month = concepto.date.getMonth();
-    let year = concepto.date.getFullYear();
+  getConceptosByUser(userUid: string){
+    this.conceptosCollection = this.afs.collection('conceptos', ref => ref.where('userUid', '==', userUid));
+    return this.conceptos = this.conceptosCollection.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as ConceptoInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+    }));
+  }
 
-    let fecha: string = (month + 1 ) + "/" + day + "/" + year;
-    concepto.date = fecha;*/
+  updateConcepto(concepto: ConceptoInterface){
   	return this.conceptosCollection.doc(concepto.id).update(concepto);
   }
 
@@ -46,7 +51,6 @@ export class ConceptosService {
   }
 
   createConcepto(concepto: ConceptoInterface){
-    console.log(concepto.date.getDate);
   	return this.conceptosCollection.add(concepto);
   }
 }
