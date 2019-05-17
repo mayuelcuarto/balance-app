@@ -1,3 +1,48 @@
-<p>
-  register works!
-</p>
+<h1 class="header-app">Registro</h1>
+<div class="div-login">
+	<form [formGroup]="formRegister" (ngSubmit)="onAddUser()">
+		<table class="table-login">
+			<tr>
+				<td class="form-control-login">
+					<mat-form-field>
+						<input #email maxlength="50" matInput placeholder="Ingresa tu Email"  formControlName = "email">
+						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td class="form-control-login">
+					<mat-form-field>
+						<input #password matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName = "password">
+						<mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+					</mat-form-field>
+				</td>
+			</tr>
+			<tr>
+				<td class="form-control-login">
+					<div class="form-group">
+                  <h5>Seleccionar imagen:</h5>
+                  <input type="file" accept=".png, .jpg" (change)="onUpload($event)">
+                </div>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-stripped bg-success" role="progressbar" [style.width]="(uploadPercent | async) + '%'">
+                  </div>
+                </div>
+                <br>
+                <input #imageUser type="hidden" [value]="urlImage | async">
+				</td>
+			</tr>
+			<tr>
+				<td class="form-control-login">
+					<button mat-raised-button color="primary" class="btn-send" (click)="onAddUser()">
+						Registrar
+					</button>
+					&nbsp;
+					<button mat-raised-button target="_blank" class="btn-google" (click)="onLoginGoogle()">
+						Google
+					</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
