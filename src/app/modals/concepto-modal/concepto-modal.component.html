@@ -5,7 +5,7 @@
   <input type="hidden" name="id" [(ngModel)]="this.data.selectedConcepto.id">
   <mat-form-field>
     <mat-label>Tipo de Concepto</mat-label>
-    <mat-select [ngModel]="this.data.selectedConcepto.type" name="type" (ngModelChange)="getCategoriasByTipo($event)">
+    <mat-select [ngModel]="this.data.selectedConcepto.type" name="type" (ngModelChange)="getCategoriasByTipoUser($event, this.data.userUid)">
       <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
         {{tipo.name}}
       </mat-option>
