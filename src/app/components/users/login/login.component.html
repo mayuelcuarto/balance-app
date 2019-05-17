@@ -21,8 +21,17 @@
 			<tr>
 				<td class="form-control-login">
 					<button mat-raised-button color="primary" class="btn-send" (click)="onLogin()">
-						LOGIN
+						Login
 					</button>
+					&nbsp; 
+					<button mat-raised-button target="_blank" class="btn-google" (click)="onLoginGoogle()">
+						Google
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td class="form-control-login">
+					<a routerLink="/user/register" class="form-control login-user">¿Eres nuevo?</a>
 				</td>
 			</tr>
 		</table>
