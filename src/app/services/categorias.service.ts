@@ -30,8 +30,20 @@ export class CategoriasService {
     }));
   }
 
-  getCategoriasByTipo(tipo: string) {
-    this.categoriasCollection = this.afs.collection('categorias', ref => ref.where('type', '==', tipo));
+  getCategoriasByUser(userUid: string){
+    this.categoriasCollection = this.afs.collection('categorias', ref => ref.where('userUid', '==', userUid));
+    return this.categorias = this.categoriasCollection.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as CategoriaInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+    }));
+  }
+
+  getCategoriasByTipoUser(tipo: string, userUid: string) {
+    this.categoriasCollection = this.afs.collection('categorias', ref => ref.where('type', '==', tipo).where('userUid', '==', userUid));
     return this.categorias = this.categoriasCollection.snapshotChanges()
       .pipe(map(changes => {
         return changes.map(action => {
