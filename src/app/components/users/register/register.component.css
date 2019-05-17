@@ -1,0 +1,21 @@
+.header-app {
+	text-align: center;
+}
+
+.div-login{
+	display: inline-block;
+	width: 100%;
+}
+
+.table-login{
+	width: 100%;
+}
+
+.form-control-login{
+	text-align: center;
+}
+
+.btn-google{
+	color: #ffffff;
+	background: #dd4b39;
+}
