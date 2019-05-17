@@ -2,13 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { RegisterComponent } from './components/users/register/register.component';
 import { ConceptosComponent } from './components/conceptos/conceptos.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
 	{ path: '', component: HomeComponent },
-	{ path: 'conceptos', component: ConceptosComponent },
-	{ path: 'categorias', component: CategoriasComponent },
+	{ path: 'user/login', component: LoginComponent },
+	{ path: 'user/register', component: RegisterComponent },
+	{ path: 'conceptos', component: ConceptosComponent, canActivate: [AuthGuard] },
+	{ path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
