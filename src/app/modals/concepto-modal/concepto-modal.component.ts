@@ -39,12 +39,12 @@ export class ConceptoModalComponent implements OnInit {
   ngOnInit() {
     if(this.data.selectedConcepto.id != null){
       this.fecha = new FormControl(this.data.selectedConcepto.date.toDate());
-      this.getCategoriasByTipo(this.data.selectedConcepto.type);
+      this.getCategoriasByTipoUser(this.data.selectedConcepto.type, this.data.userUid);
     }else{
       this.fecha = new FormControl(new Date());
       this.data.selectedConcepto.type = "ingreso";
       this.data.selectedConcepto.category = null;
-      this.getCategoriasByTipo("ingreso");
+      this.getCategoriasByTipoUser("ingreso", this.data.userUid);
     }
   }
 
@@ -52,21 +52,15 @@ export class ConceptoModalComponent implements OnInit {
     if(this.data.selectedConcepto.id == null){
       // New
       console.log('New', conceptoForm.value);
-      if(this.data.selectedConcepto.description != null 
-        && this.data.selectedConcepto.mount != null
-        && this.data.selectedConcepto.date != null){
         conceptoForm.value.date = this.fecha.value;
+        conceptoForm.value.userUid = this.data.userUid;
         this.conceptoService.createConcepto(conceptoForm.value);
-      }
+      
     }else{
       // Edit
       console.log('Update', conceptoForm.value);
-      if(this.data.selectedConcepto.description != null 
-        && this.data.selectedConcepto.mount != null
-        && this.data.selectedConcepto.date != null){
         conceptoForm.value.date = this.fecha.value;
         this.conceptoService.updateConcepto(conceptoForm.value);
-      }
     }
     conceptoForm.resetForm();
     this.dialogRef.close();
@@ -78,8 +72,8 @@ export class ConceptoModalComponent implements OnInit {
     });
   }
 
-  getCategoriasByTipo(tipo: string): void{
-    this.categoriaService.getCategoriasByTipo(tipo).subscribe(res => {
+  getCategoriasByTipoUser(tipo: string, userUid: string): void{
+    this.categoriaService.getCategoriasByTipoUser(tipo, userUid).subscribe(res => {
       this.categorias = res;
     });
   }
