@@ -17,7 +17,8 @@ export class CategoriaModalComponent implements OnInit {
   constructor(
   	public dialogRef: MatDialogRef<CategoriaModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public categoriaService: CategoriasService) { }
+    public categoriaService: CategoriasService
+    ) { }
 
   public tipos: TipoInterface[] = [
     {id: 'ingreso', name: 'Ingresos'},
@@ -42,6 +43,7 @@ export class CategoriaModalComponent implements OnInit {
       // New
       console.log('New', categoriaForm.value);
       if(this.data.selectedCategoria.name != null){
+        categoriaForm.value.userUid = this.data.userUid;
         this.categoriaService.createCategoria(categoriaForm.value);
       }
     }else{
