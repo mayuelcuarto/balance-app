@@ -4,6 +4,10 @@ import { ConceptosService } from '../../services/conceptos.service';
 import { ConceptoInterface } from '../../models/concepto';
 import { ConceptoModalComponent } from '../../modals/concepto-modal/concepto-modal.component';
 
+import { AuthService } from '../../services/auth.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UserInterface } from '../../models/user';
+
 @Component({
   selector: 'app-conceptos',
   templateUrl: './conceptos.component.html',
@@ -11,7 +15,14 @@ import { ConceptoModalComponent } from '../../modals/concepto-modal/concepto-mod
 })
 export class ConceptosComponent implements OnInit {
 
-  constructor(private conceptoService: ConceptosService, public dialog: MatDialog) { }
+  constructor(
+    private conceptoService: ConceptosService, 
+    public dialog: MatDialog,
+    private authService: AuthService
+    ) { }
+
+  public isAdmin: any = null;
+  public userUid: string = null;
   displayedColumns: string[] = ['type','category','description', 'mount', 'date', 'actions'];
   dataSource = new MatTableDataSource();
 
@@ -19,6 +30,7 @@ export class ConceptosComponent implements OnInit {
     const dialogRef = this.dialog.open(ConceptoModalComponent, {
       width: '250px',
       data: {selectedConcepto: this.conceptoService.selectedConcepto,
+             userUid: this.userUid
         }
     });
 
@@ -30,7 +42,8 @@ export class ConceptosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-  	this.getAllConceptos();
+  	//this.getAllConceptos();
+    this.getCurrentUser();
   }
 
   ngAfterViewInit(){
@@ -41,7 +54,12 @@ export class ConceptosComponent implements OnInit {
     this.conceptoService.getConceptos().subscribe(res => {
        this.dataSource.data = res;
     });
+  }
 
+  getConceptosByUser(userUid: string){
+    this.conceptoService.getConceptosByUser(userUid).subscribe(res => {
+       this.dataSource.data = res;
+    });
   }
 
   onChangeStatus(concepto: ConceptoInterface){
@@ -54,10 +72,21 @@ export class ConceptosComponent implements OnInit {
   }
 
   onDeleteConcepto(idConcepto: string){
-    const confirmacion = confirm('Are you sure?');
+    const confirmacion = confirm('Estás seguro?');
     if(confirmacion){
       this.conceptoService.deleteConcepto(idConcepto);
     }
   }
 
+  getCurrentUser(){
+    this.authService.isAuth().subscribe(auth => {
+      if(auth){
+        this.userUid = auth.uid;
+        this.authService.isUserAdmin(this.userUid).subscribe(userRole => {
+          this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
+        })
+        this.getConceptosByUser(this.userUid);
+      }
+    })
+  }
 }
