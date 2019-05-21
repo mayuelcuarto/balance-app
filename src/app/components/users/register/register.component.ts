@@ -80,4 +80,10 @@ export class RegisterComponent implements OnInit {
   onCatchError(err): void{
     console.log('err', err.message);
   }
+
+  getErrorMessage() {
+    return this.formRegister.get('email').hasError('required') ? 'Debes ingresar un valor' :
+        this.formRegister.get('email').hasError('email') ? 'Email inválido' :
+            '';
+  }
 }
