@@ -6,7 +6,8 @@
     <mat-toolbar color="primary">Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item href="#" *ngIf="!isLogged" routerLink="/user/login">Login</a>
-      <a mat-list-item href="#" *ngIf="!isLogged" routerLink="/user/register">Register</a>
+      <a mat-list-item href="#" *ngIf="!isLogged" routerLink="/user/register">Registro</a>
+      <a mat-list-item href="#" *ngIf="isLogged" routerLink="/user/profile">Perfil</a>
       <a mat-list-item href="#" *ngIf="isLogged" routerLink="/conceptos">Conceptos</a>
       <a mat-list-item href="#" *ngIf="isLogged" routerLink="/categorias">Categorías</a>
       <a mat-list-item href="#" *ngIf="isLogged" (click)="onLogout()">Logout</a>
