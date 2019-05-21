@@ -1,3 +1,11 @@
-<p>
-  profile works!
-</p>
+<h1 class="header-app">Perfil</h1>
+<div class="row mt-5" class="div-profile">
+	<br>
+	    <table class="table-profile">
+	      <tr><td class="form-control-profile"><img src="{{user.photoUrl}}" alt="perfil"></td></tr>
+	      <tr><td class="form-control-profile"><h5 *ngIf="providerId != 'password'">{{user.name}}</h5></td></tr>
+	      <tr><td class="form-control-profile">
+	      	<p>{{user.email}}</p>
+	    </td></tr>
+	    </table>
+</div>
