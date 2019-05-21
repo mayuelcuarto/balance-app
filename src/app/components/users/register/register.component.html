@@ -5,8 +5,8 @@
 			<tr>
 				<td class="form-control-login">
 					<mat-form-field>
-						<input #email maxlength="50" matInput placeholder="Ingresa tu Email"  formControlName = "email">
-						<mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+						<input #email maxlength="50" matInput placeholder="Ingresa tu Email"  formControlName = "email" required>
+						<mat-error *ngIf="this.formRegister.get('email').invalid">{{getErrorMessage()}}</mat-error>
 					</mat-form-field>
 				</td>
 			</tr>
