@@ -79,6 +79,7 @@ export class RegisterComponent implements OnInit {
 
   onCatchError(err): void{
     console.log('err', err.message);
+    alert(err.message);
   }
 
   getErrorMessage() {

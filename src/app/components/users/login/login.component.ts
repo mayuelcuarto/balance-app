@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void{
-    console.log('email', this.formLogin.value.email);
-    console.log('password', this.formLogin.value.password);
+    //console.log('email', this.formLogin.value.email);
+    //console.log('password', this.formLogin.value.password);
     this.authService.loginEmailUser(this.formLogin.value.email, this.formLogin.value.password)
     .then((res) => {
       this.onLoginRedirect();
@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
 
   onCatchError(err): void{
     console.log('err', err.message);
+    alert(err.message);
   }
 
   getErrorMessage() {
