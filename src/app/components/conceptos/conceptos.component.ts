@@ -42,18 +42,11 @@ export class ConceptosComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
-  	//this.getAllConceptos();
     this.getCurrentUser();
   }
 
   ngAfterViewInit(){
     this.dataSource.sort = this.sort;
-  }
-
-  getAllConceptos(){
-    this.conceptoService.getConceptos().subscribe(res => {
-       this.dataSource.data = res;
-    });
   }
 
   getConceptosByUser(userUid: string){

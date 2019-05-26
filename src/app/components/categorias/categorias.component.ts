@@ -49,12 +49,6 @@ export class CategoriasComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  getAllCategorias(){
-    this.categoriaService.getCategorias().subscribe(res => {
-      this.dataSource.data = res;
-    });
-  }
-
   getAllCategoriasByUser(userUid: string){
     this.categoriaService.getCategoriasByUser(userUid).subscribe(res => {
       this.dataSource.data = res;

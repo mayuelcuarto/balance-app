@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoriaInterface } from '../models/categoria';
@@ -12,23 +12,9 @@ export class CategoriasService {
   constructor(private readonly afs: AngularFirestore) {}
   private categoriasCollection: AngularFirestoreCollection<CategoriaInterface>;
   private categorias: Observable<CategoriaInterface[]>;
-  private categoriaDoc: AngularFirestoreDocument<CategoriaInterface>;
-  private categoria: Observable<CategoriaInterface>;
   public selectedCategoria: CategoriaInterface = {
     id: null
   };
-
-  getCategorias(){
-    this.categoriasCollection = this.afs.collection<CategoriaInterface>('categorias');
-    return this.categorias = this.categoriasCollection.snapshotChanges()
-    .pipe(map(changes => {
-      return changes.map(action => {
-        const data = action.payload.doc.data() as CategoriaInterface;
-        data.id = action.payload.doc.id;
-        return data;
-      });
-    }));
-  }
 
   getCategoriasByUser(userUid: string){
     this.categoriasCollection = this.afs.collection('categorias', ref => ref.where('userUid', '==', userUid));

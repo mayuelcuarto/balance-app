@@ -51,25 +51,19 @@ export class ConceptoModalComponent implements OnInit {
   onSaveConcepto(conceptoForm: NgForm): void{
     if(this.data.selectedConcepto.id == null){
       // New
-      console.log('New', conceptoForm.value);
+      //console.log('New', conceptoForm.value);
         conceptoForm.value.date = this.fecha.value;
         conceptoForm.value.userUid = this.data.userUid;
         this.conceptoService.createConcepto(conceptoForm.value);
       
     }else{
       // Edit
-      console.log('Update', conceptoForm.value);
+      //console.log('Update', conceptoForm.value);
         conceptoForm.value.date = this.fecha.value;
         this.conceptoService.updateConcepto(conceptoForm.value);
     }
     conceptoForm.resetForm();
     this.dialogRef.close();
-  }
-
-  getAllCategorias(): void{
-    this.categoriaService.getCategorias().subscribe(res => {
-      this.categorias = res;
-    });
   }
 
   getCategoriasByTipoUser(tipo: string, userUid: string): void{

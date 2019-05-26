@@ -41,19 +41,18 @@ export class CategoriaModalComponent implements OnInit {
   onSaveCategoria(categoriaForm: NgForm): void{
     if(this.data.selectedCategoria.id == null){
       // New
-      console.log('New', categoriaForm.value);
+      //console.log('New', categoriaForm.value);
       if(this.data.selectedCategoria.name != null){
         categoriaForm.value.userUid = this.data.userUid;
         this.categoriaService.createCategoria(categoriaForm.value);
       }
     }else{
       // Edit
-      console.log('Update', categoriaForm.value);
+      //console.log('Update', categoriaForm.value);
       if(this.data.selectedCategoria.name != null){
         this.categoriaService.updateCategoria(categoriaForm.value);
       }
     }
-    //console.log('Else', categoriaForm.value);
     categoriaForm.resetForm();
     this.dialogRef.close();
   }
