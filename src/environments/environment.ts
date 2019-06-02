@@ -10,8 +10,7 @@ export const environment = {
     databaseURL: "https://balanceapp-31e4c.firebaseio.com",
     projectId: "balanceapp-31e4c",
     storageBucket: "balanceapp-31e4c.appspot.com",
-    messagingSenderId: "762640607428",
-    appId: "1:762640607428:web:a2d62cb3c4053fad"
+    messagingSenderId: "762640607428"
   }
 };
 
