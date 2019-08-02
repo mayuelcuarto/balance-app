@@ -26,6 +26,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ConceptoModalComponent } from './modals/concepto-modal/concepto-modal.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { CategoriaModalComponent } from './modals/categoria-modal/categoria-modal.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { CategoriaModalComponent } from './modals/categoria-modal/categoria-moda
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
   ConceptoModalComponent,
