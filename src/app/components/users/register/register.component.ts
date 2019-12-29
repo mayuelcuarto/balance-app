@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
     task.snapshotChanges().pipe(finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
   }
 
-  onAddUser(){
+  /*onAddUser(){
   	this.authService.registerUser(this.formRegister.value.email, this.formRegister.value.password)
   	.then((res) => {
       this.authService.isAuth().subscribe(user => {
@@ -57,24 +57,41 @@ export class RegisterComponent implements OnInit {
         }
       })
   	}).catch(err => this.onCatchError(err));
+  }*/
+
+  onAddUser(){
+    this.authService.registerUser(this.formRegister.value.email, this.formRegister.value.password)
+    .then((res) => {
+      this.authService.isAuth().subscribe(user => {
+        user.sendEmailVerification();
+      })
+    }).catch(err => this.onCatchError(err))
+    .finally(() => {
+      this.authService.logoutUser();
+      this.onRegisterRedirect();
+    });
   }
 
   onLoginGoogle(): void{
     this.authService.loginGoogleUser()
     .then((res) => {
-      this.onRegisterRedirect();
+      this.onLoginRedirect();
     }).catch(err => this.onCatchError(err));  	
   }
 
   onLoginFacebook(): void{
   	this.authService.loginFacebookUser()
     .then((res) => {
-      this.onRegisterRedirect();
+      this.onLoginRedirect();
     }).catch(err => this.onCatchError(err));    
   }
 
+  onLoginRedirect(): void{
+    this.router.navigate(['conceptos']);
+  }
+
   onRegisterRedirect(): void{
-    this.router.navigate(['conceptos/']);
+    this.router.navigate(['user/login-message']);
   }
 
   onCatchError(err): void{
