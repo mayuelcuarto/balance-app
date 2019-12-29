@@ -27,6 +27,7 @@ import { ConceptoModalComponent } from './modals/concepto-modal/concepto-modal.c
 import { CategoriasComponent } from './components/categorias/categorias.component';
 import { CategoriaModalComponent } from './modals/categoria-modal/categoria-modal.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { LoginMessageComponent } from './components/users/login-message/login-message.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     ProfileComponent,
     ConceptoModalComponent,
     CategoriasComponent,
-    CategoriaModalComponent
+    CategoriaModalComponent,
+    LoginMessageComponent
   ],
   imports: [
     BrowserAnimationsModule,
