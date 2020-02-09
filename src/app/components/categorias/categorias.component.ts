@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog, MatDialogRef, MatPaginator, MAT_DIALOG_DATA } from '@angular/material';
 import { CategoriasService } from '../../services/categorias.service';
 import { CategoriaInterface } from '../../models/categoria';
 import { CategoriaModalComponent } from '../../modals/categoria-modal/categoria-modal.component';
@@ -39,6 +39,7 @@ export class CategoriasComponent implements OnInit {
     });
   }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
@@ -46,6 +47,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
