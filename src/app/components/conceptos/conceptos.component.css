@@ -9,3 +9,8 @@ table{
 .mat-icon{
 	cursor: pointer;
 }
+
+.mount-cell{
+	text-align: right; 
+	padding-right: 1%;
+}
