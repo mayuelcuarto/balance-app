@@ -14,3 +14,14 @@ table{
 	text-align: right; 
 	padding-right: 1%;
 }
+
+.oneline{
+ width: 49%;
+ display: inline-block;
+}
+
+.oneline-right{
+ width: 49%;
+ display: inline-block;
+ text-align: right;
+}
