@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { MatSort, MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatSort, MatTableDataSource, MatDialog, MatDialogRef, MatPaginator, MAT_DIALOG_DATA } from '@angular/material';
 import { ConceptosService } from '../../services/conceptos.service';
 import { ConceptoInterface } from '../../models/concepto';
 import { ConceptoModalComponent } from '../../modals/concepto-modal/concepto-modal.component';
@@ -39,13 +39,21 @@ export class ConceptosComponent implements OnInit {
     });
   }
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 
   ngOnInit() {
     this.getCurrentUser();
   }
 
   ngAfterViewInit(){
+    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
@@ -65,7 +73,7 @@ export class ConceptosComponent implements OnInit {
   }
 
   onDeleteConcepto(idConcepto: string){
-    const confirmacion = confirm('Estás seguro?');
+    const confirmacion = confirm('Estás seguro de querer eliminar el concepto?');
     if(confirmacion){
       this.conceptoService.deleteConcepto(idConcepto);
     }

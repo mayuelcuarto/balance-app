@@ -17,7 +17,7 @@ export class ConceptosService {
   };
 
   getConceptosByUser(userUid: string){
-    this.conceptosCollection = this.afs.collection('conceptos', ref => ref.where('userUid', '==', userUid));
+    this.conceptosCollection = this.afs.collection('conceptos', ref => ref.where('userUid', '==', userUid).orderBy('date', 'desc'));
     return this.conceptos = this.conceptosCollection.snapshotChanges()
     .pipe(map(changes => {
       return changes.map(action => {
