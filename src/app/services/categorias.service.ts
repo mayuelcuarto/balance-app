@@ -49,6 +49,10 @@ export class CategoriasService {
   }
 
   createCategoria(categoria: CategoriaInterface){
-  	return this.categoriasCollection.add(categoria);
+  	return  this.categoriasCollection.add(categoria).
+            then(docRef => {
+              categoria.id = docRef.id;
+              this.updateCategoria(categoria);
+            });
   }
 }

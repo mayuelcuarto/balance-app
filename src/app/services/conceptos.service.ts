@@ -37,6 +37,10 @@ export class ConceptosService {
   }
 
   createConcepto(concepto: ConceptoInterface){
-  	return this.conceptosCollection.add(concepto);
+  	return this.conceptosCollection.add(concepto).
+            then(docRef => {
+              concepto.id = docRef.id;
+              this.updateConcepto(concepto);
+            });;
   }
 }
