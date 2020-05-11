@@ -39,7 +39,7 @@
 		<table class="table-register">
 			<tr>
 				<td class="form-control-register">
-					<button mat-raised-button color="primary" class="btn-send" (click)="onAddUser()">
+					<button mat-raised-button color="primary" class="btn-send" [disabled]="!formRegister.valid" (click)="onAddUser()">
 						Registrar
 					</button>
 					&nbsp;

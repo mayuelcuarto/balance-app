@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
 
   formRegister = new FormGroup ({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('')
+    password: new FormControl('', [Validators.required])
   });
 
   ngOnInit() {
@@ -60,6 +60,7 @@ export class RegisterComponent implements OnInit {
   }*/
 
   onAddUser(){
+    if(this.formRegister.valid)
     this.authService.registerUser(this.formRegister.value.email, this.formRegister.value.password)
     .then((res) => {
       this.authService.isAuth().subscribe(user => {
