@@ -1,4 +1,4 @@
-// You must rename this file to environment ts to compile the project and create a duplicate file name environment.prod.ts to build de project
+// You must rename this file to environment.ts to compile the project and create a duplicate file name environment.prod.ts to build de project
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
