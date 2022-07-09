@@ -1,19 +1,10 @@
+// You must rename this file to environment ts to compile the project and create a duplicate file name environment.prod.ts to build de project
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyCMjNu7_xAOlTR9vkGsKEb1yQqQVcZfrG8",
-    authDomain: "balanceapp-31e4c.firebaseapp.com",
-    databaseURL: "https://balanceapp-31e4c.firebaseio.com",
-    projectId: "balanceapp-31e4c",
-    storageBucket: "balanceapp-31e4c.appspot.com",
-    messagingSenderId: "762640607428",
-    appId: "1:762640607428:web:a2d62cb3c4053fad",
-    measurementId: "G-NR0YZ6DV62"
-  }
+  production: false
 };
 
 /*
