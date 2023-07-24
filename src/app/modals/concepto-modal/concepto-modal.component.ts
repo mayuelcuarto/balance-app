@@ -20,7 +20,7 @@ export class ConceptoModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ConceptoModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public conceptoService: ConceptosService,
-    public categoriaService:  CategoriasService
+    public categoriaService: CategoriasService
     ) {}
 
   public tipos: TipoInterface[] = [

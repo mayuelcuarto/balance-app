@@ -28,6 +28,7 @@ import { CategoriasComponent } from './components/categorias/categorias.componen
 import { CategoriaModalComponent } from './modals/categoria-modal/categoria-modal.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LoginMessageComponent } from './components/users/login-message/login-message.component';
+import { BalanceComponent } from './components/balance/balance.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { LoginMessageComponent } from './components/users/login-message/login-me
     ConceptoModalComponent,
     CategoriasComponent,
     CategoriaModalComponent,
-    LoginMessageComponent
+    LoginMessageComponent,
+    BalanceComponent
   ],
   imports: [
     BrowserAnimationsModule,

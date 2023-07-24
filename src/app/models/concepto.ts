@@ -4,6 +4,5 @@ export interface ConceptoInterface{
 	mount?: number;
 	type?: string;
 	category?: string;
-	date?: any;
-	dateString?: string;
+	date?: Date;
 }

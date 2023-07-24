@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/users/register/register.componen
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { ConceptosComponent } from './components/conceptos/conceptos.component';
 import { CategoriasComponent } from './components/categorias/categorias.component';
+import { BalanceComponent } from './components/balance/balance.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
 	{ path: 'user/profile', component: ProfileComponent, canActivate: [AuthGuard] },
 	{ path: 'conceptos', component: ConceptosComponent, canActivate: [AuthGuard] },
 	{ path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
+	{ path: 'balance', component: BalanceComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

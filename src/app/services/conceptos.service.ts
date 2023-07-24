@@ -41,6 +41,23 @@ export class ConceptosService {
             then(docRef => {
               concepto.id = docRef.id;
               this.updateConcepto(concepto);
-            });;
+            });
+  }
+
+  getConceptosByUserDates(userUid: string, fechaInicio: Date, fechaFin: Date){
+    this.conceptosCollection = this.afs.collection('conceptos', ref => ref
+      .where('userUid', '==', userUid)
+      .orderBy('date', 'desc')
+      .startAt(fechaFin)
+      .endAt(fechaInicio));
+
+    return this.conceptos = this.conceptosCollection.snapshotChanges()
+    .pipe(map(changes => {
+      return changes.map(action => {
+        const data = action.payload.doc.data() as ConceptoInterface;
+        data.id = action.payload.doc.id;
+        return data;
+      });
+    }));
   }
 }
