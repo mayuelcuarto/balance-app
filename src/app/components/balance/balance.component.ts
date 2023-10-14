@@ -32,6 +32,10 @@ export class BalanceComponent implements OnInit {
   public fechaInicio = null;
   public fechaFin = null;
 
+  public totalIngresos: string = null;
+  public totalEgresos: string = null;
+  public balance: string = null;
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -57,7 +61,22 @@ export class BalanceComponent implements OnInit {
     filtroForm.value.fechaFin = this.fechaFin.value;
 
     this.conceptoService.getConceptosByUserDates(this.userUid, filtroForm.value.fechaInicio, filtroForm.value.fechaFin).subscribe(res => {
-       this.dataSource.data = res;
+      this.dataSource.data = res;
+
+      let montoIngresos:number = 0.0;
+      let montoEgresos:number = 0.0;
+
+      res.forEach((element) => {
+        if(element.type == 'ingreso'){
+          montoIngresos = montoIngresos + parseFloat(element.mount.toString());
+        }else if(element.type == 'egreso'){
+          montoEgresos = montoEgresos + parseFloat(element.mount.toString());
+        }
+      });
+
+      this.totalIngresos = montoIngresos.toFixed(2);
+      this.totalEgresos = montoEgresos.toFixed(2);
+      this.balance = (montoIngresos - montoEgresos).toFixed(2);
     });
   }
 
@@ -69,7 +88,7 @@ export class BalanceComponent implements OnInit {
           this.isAdmin = Object.assign({}, userRole.roles).hasOwnProperty('admin');
         })
       }
-    })
+    });
   }
 
 }

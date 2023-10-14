@@ -56,4 +56,21 @@
 
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
   </div>
+  <div class="example-header" fxLayout="row" mat-dialog-content>
+    <div class="oneline">
+      <mat-form-field>
+        <input matInput [(ngModel)]="this.totalIngresos" placeholder="Total Ingresos" readonly>
+      </mat-form-field>
+    </div>
+    <div class="oneline">
+      <mat-form-field>
+        <input matInput [(ngModel)]="this.totalEgresos" placeholder="Total Egresos" readonly>
+      </mat-form-field>
+    </div>
+    <div class="oneline">
+      <mat-form-field>
+        <input matInput [(ngModel)]="this.balance" placeholder="Balance" readonly>
+      </mat-form-field>
+    </div>
+  </div>
 </div>
