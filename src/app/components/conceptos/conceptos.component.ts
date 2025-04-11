@@ -25,6 +25,7 @@ export class ConceptosComponent implements OnInit {
   public userUid: string = null;
   displayedColumns: string[] = ['type','category','description', 'mount', 'date', 'actions'];
   dataSource = new MatTableDataSource();
+  export = null;
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ConceptoModalComponent, {
@@ -59,7 +60,9 @@ export class ConceptosComponent implements OnInit {
 
   getConceptosByUser(userUid: string){
     this.conceptoService.getConceptosByUser(userUid).subscribe(res => {
-       this.dataSource.data = res;
+      this.dataSource.data = res;
+      this.export = res;
+      console.log(this.export);
     });
   }
 

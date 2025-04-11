@@ -8,6 +8,11 @@
         <mat-icon>note_add</mat-icon> Nuevo
       </button>
     </div>
+    <div class="oneline">
+      <button mat-raised-button color="success" (click)="openDialog()">
+        <mat-icon>file_download</mat-icon> Exportar
+      </button>
+    </div>
     <div class="oneline-right">
       <mat-form-field >
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtro">
