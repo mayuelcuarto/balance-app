@@ -2,14 +2,14 @@
   <div class="header-app">
   	<h1>Mantenimiento de Conceptos</h1>
   </div>
-  <div class="example-header" fxLayout="row">
+  <div class="example-header" fxLayout="row" mat-dialog-content>
     <div class="oneline">
       <button mat-raised-button color="primary" (click)="openDialog()">
         <mat-icon>note_add</mat-icon> Nuevo
       </button>
     </div>
-    <div class="oneline">
-      <button mat-raised-button color="success" (click)="openDialog()">
+    <div class="oneline-center">
+      <button mat-raised-button color="secondary" (click)="exportConceptosToCSV()">
         <mat-icon>file_download</mat-icon> Exportar
       </button>
     </div>

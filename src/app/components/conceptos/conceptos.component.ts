@@ -61,8 +61,6 @@ export class ConceptosComponent implements OnInit {
   getConceptosByUser(userUid: string){
     this.conceptoService.getConceptosByUser(userUid).subscribe(res => {
       this.dataSource.data = res;
-      this.export = res;
-      console.log(this.export);
     });
   }
 
@@ -92,5 +90,36 @@ export class ConceptosComponent implements OnInit {
         this.getConceptosByUser(this.userUid);
       }
     })
+  }
+
+  exportConceptosToCSV(): void {
+    this.conceptoService.getConceptosByUser(this.userUid).subscribe(conceptos => {
+      if (!conceptos || conceptos.length === 0) {
+        console.error('No hay datos para exportar.');
+        return;
+      }
+  
+      // Convertir los datos a formato CSV
+      const headers = Object.keys(conceptos[0]).join(';');
+      const rows = conceptos.map(concepto => {
+        return Object.values(concepto).map(value => `"${value}"`).join(';');
+      });
+      const csvData = `${headers}\n${rows.join('\n')}`;
+  
+      // Crear un Blob con el contenido CSV
+      const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+  
+      // Crear un enlace temporal para descargar el archivo
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `conceptos.csv`);
+      link.style.visibility = 'hidden';
+  
+      // Agregar el enlace al DOM, hacer clic y eliminarlo
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
   }
 }
