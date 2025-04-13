@@ -16,12 +16,12 @@ table{
 }
 
 .oneline{
- width: 49%;
+ width: 10%;
  display: inline-block;
 }
 
 .oneline-right{
- width: 49%;
+ width: 80%;
  display: inline-block;
  text-align: right;
 }
